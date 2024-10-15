@@ -25,10 +25,7 @@ export class MenuComponent {
 
     this.allMenu = [
       { path: 'dashboard', label: 'Dashboard', icon:'mdi mdi-view-dashboard-outline' },
-      /* { path: 'utenti', label:'Utenti Registrati',icon:'mdi mdi-account-multiple-outline' },
-    
-      { path: 'form-list', label:'Gestione form e viste',icon:'mdi mdi-cog-outline' },
-      { path: 'outfit-product-list', label:'Gestione prodotti e feed',icon:'mdi mdi-tshirt-v-outline' }, */
+     
     ]
 
   }
