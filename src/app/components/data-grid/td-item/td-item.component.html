@@ -1,0 +1,27 @@
+
+<span 
+    *ngIf="!showBooleanFlag && !isMockDataLoading; else skeletonTemplate"
+    class="contet-data " [ngStyle]="styleData"
+    [ngClass]="{'summary-item':showSummaryText}"
+    (click)="clickTd($event)"
+    [innerHTML]="highlightMatches(staticData)"
+    
+>   
+
+</span>
+
+<ng-template #skeletonTemplate>
+
+    <span class="contet-data loadingSkeleton" [ngStyle]= "styleData"
+    [ngClass]="{'summary-item':showSummaryText}"> </span>
+
+</ng-template> 
+
+<!-- Tooltip nascosto, viene mostrato al passaggio del mouse -->
+<div *ngIf="isTooltipVisible &&  this.colType == 'campoImg' " class="tooltip-custom" [ngStyle]="tooltipStyle" (mouseenter)="restShow()" (mouseleave)="hideTooltip()">
+    <img [src]="toolTipImg" alt="Immagine Tooltip" >
+</div>
+
+
+
+

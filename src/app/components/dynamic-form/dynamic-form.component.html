@@ -1,0 +1,73 @@
+<form [formGroup]="form" (ngSubmit)="submitForm()">
+    <div class="form-container">
+      <ng-container *ngFor="let field of fields">
+        <ng-container *ngIf="field.type == 'hiddenBox'">
+          <input [type]="field.typeInput"   [name]="field.name" 
+          [formControlName]="field.name"
+          
+          [id]="field.htmlId" 
+          class="form-control" 
+          [(ngModel)]="formValues[field.name]"
+          >
+        </ng-container>
+     
+        <div class="row mt-3 mb-3">
+          <label *ngIf="field.type != 'hiddenBox'" class="col-sm-3 col-form-label font-medium">{{ field.label }}
+            <span class="badge bg-secondary" *ngIf="field.required">Richiesto</span>
+          </label>
+          <div class="col-sm-9" [formGroup]="form">
+            <input *ngIf="field.type === 'textBox'" 
+              [type]="!field.typeInput ? 'text' : field.typeInput "
+              [name]="field.name" 
+              [formControlName]="field.name"
+              [attr.required]="field.required ? true : null"
+              [id]="field.htmlId" 
+              class="form-control" 
+              [(ngModel)]="formValues[field.name]"  
+              [placeholder]="field.placeholder"
+              [maxlength]="field.maxlength!"
+              [minlength]="field.minlength!"
+              >
+            
+            
+              <textarea  *ngIf="field.type === 'textArea'"
+            [placeholder]="field.placeholder" rows="4"
+            class="form-control" 
+              >
+  
+              </textarea>
+              
+              <app-dynamic-select-box
+               *ngIf="field.type === 'selectBox'" [config]="field"
+              [parentValue]="formValues[field.selectOptions?.parent || '']" [value]="formValues[field.name]"
+              [values]="field.selectOptions?.multiple ? formValues[field.name] : []"
+              (valueChange)="onValueChange(field.name, $event)">
+            </app-dynamic-select-box>
+              <app-dynamic-file-box
+               *ngIf="field.type === 'fileBox'" [config]="field"
+              [value]="formValues[field.name]"
+             
+              (valueChange)="onValueChange(field.name, $event)">
+            </app-dynamic-file-box>
+
+
+          </div>
+  
+  
+          <!--  <div *ngIf="name.invalid && name.touched" class="text-danger">*Nome obbligatorio</div> -->
+        </div>
+  
+  
+      
+      </ng-container>
+    </div>
+    
+
+
+    <div class="form-footer">
+
+      <button type="button" class="btn ana-button" (click)="cancellForm()"><span class="mdi mdi-keyboard-return"></span>Chiudi</button> 
+      <button type="submit" class="btn ana-button" ><span class="mdi mdi-content-save-outline"></span>Salva</button>
+      
+  </div>
+</form>

@@ -1,0 +1,354 @@
+<div class="modal-body form-container">
+
+    <form #elementForm="ngForm">
+        <div class="">
+            <div class="row mt-3 mb-3">
+                <label class="col-sm-3 col-form-label font-medium">Nome campo
+                    <span class="badge bg-secondary">Richiesto</span>
+                </label>
+                <div class="col-sm-9">
+                    <input type="text" name="name" required #name="ngModel" class="form-control"
+                        [(ngModel)]="formField.name">
+                </div>
+
+
+                <div *ngIf="name.invalid && name.touched" class="text-danger">*Nome obbligatorio</div>
+            </div>
+            <div class="row mt-3 mb-3">
+                <label class="col-sm-3 col-form-label font-medium">Tipo di campo
+                    <span class="badge bg-secondary">Richiesto</span>
+                </label>
+                <div class="col-sm-9">
+                    <select #typeInput="ngModel" name="typeInput" required [(ngModel)]="formField.typeInput"
+                        class="form-control" [disabled]="showFileOption || showSelectOption || showHiddenBox">
+                        <option value="">Seleziona</option>
+                        <option value="text">Testo</option>
+                        <option value="number">Numerico</option>
+                        <option value="email">Email</option>
+                        <option value="password">Password</option>
+                        <option value="url">Url</option>
+                        <option value="file" [selected]="showFileOption">file</option>
+                        <option value="boolean" [selected]="showCheckBoxOption">Boolean</option>
+                        <option value="selectBox" [selected]="showSelectOption">SelectBox</option>
+                        <option value="hidden"   [selected]="showHiddenBox">Nascosto/Hidden</option>
+                    </select>
+
+                </div>
+
+                <div *ngIf="label.invalid && label.touched" class="text-danger">*Tipo obbligatoria</div>
+            </div>
+            <div class="row mt-3 mb-3">
+                <label class="col-sm-3 col-form-label font-medium">Label
+                    <span class="badge bg-secondary">Richiesto</span>
+                </label>
+                <div class="col-sm-9">
+                    <input type="text" name="label" required #label="ngModel" class="form-control"
+                        [(ngModel)]="formField.label">
+                </div>
+
+                <div *ngIf="label.invalid && label.touched" class="text-danger">*Label obbligatoria</div>
+            </div>
+            <div class="row mt-3 mb-3">
+                <label class="col-sm-3 col-form-label font-medium">Placeholder</label>
+                <div class="col-sm-9">
+                    <input type="text" name="placeholder" class="form-control" [(ngModel)]="formField.placeholder">
+                </div>
+
+            </div>
+            <div class="row mt-3 mb-3">
+                <label class="col-sm-3 col-form-label font-medium">CSS Class</label>
+                <div class="col-sm-9">
+                    <input type="text" name="cssClass" class="form-control" [(ngModel)]="formField.cssClass">
+                </div>
+
+            </div>
+            <div class="row mt-3 mb-3">
+                <label class="col-sm-3 col-form-label font-medium">HTML ID</label>
+                <div class="col-sm-9">
+                    <input type="text" name="htmlId" class="form-control" [(ngModel)]="formField.htmlId">
+                </div>
+
+
+            </div>
+            <div class="row mt-3 mb-3">
+                <label class="col-sm-3 col-form-label font-medium">Max Length</label>
+                <div class="col-sm-9">
+                    <input type="number" [disabled]="showFileOption" name="maxLength" class="form-control"
+                        [(ngModel)]="formField.maxLength">
+                </div>
+
+            </div>
+            <div class="row mt-3 mb-3">
+                <label class="col-sm-3 col-form-label font-medium">Required</label>
+                <div class="col-sm-9 form-check">
+
+                    <input id="required" type="checkbox" class="form-check-input custom-checkbox" name="required"
+                        [(ngModel)]="formField.required">
+                    <label class="form-check-label" for="required">
+                        Campo Richiesto
+                    </label>
+                </div>
+
+            </div>
+            <div class="row mt-3 mb-3" *ngIf="this.formField.type == 'textBox'">
+                <label class="col-sm-3 col-form-label font-medium">Mostra func.bot</label>
+                <div class="col-sm-9 form-check">
+
+                    <input id="funcButton" type="checkbox" class="form-check-input custom-checkbox" name="funcButton"
+                        [(ngModel)]="formField.funcButton">
+                    <label class="form-check-label" for="required">
+                        Mostra un bottone funzionale nella form
+                    </label>
+                </div>
+
+            </div>
+            <div class="row mt-3 mb-3" *ngIf="this.formField.type == 'textBox' && formField.typeInput == 'number'">
+                <label class="col-sm-3 col-form-label font-medium" for="min">Min Value</label>
+                <div class="col-sm-9 form-control">
+                    <input [disabled]="showFileOption" id="min" type="number" class="form-control" name="min"
+                        [(ngModel)]="formField.min">
+                </div>
+
+            </div>
+            <div class="row mt-3 mb-3" *ngIf="this.formField.type == 'textBox' && formField.typeInput == 'number'">
+                <label class="col-sm-3 col-form-label font-medium">Max Value</label>
+                <div class="col-sm-9 form-control">
+                    <input [disabled]="showFileOption" type="number" class="form-control" name="max"
+                        [(ngModel)]="formField.max">
+                </div>
+
+            </div>
+
+
+
+        </div>
+        <!--CheckBox-->
+        <div *ngIf="showCheckBoxOption && formField.checkBoxOptions" class="row mt-3 mb-3 ">
+            <div class="row mt-3 mb-3">
+                <label class="col-sm-3 col-form-label font-medium">CheckBox con link</label>
+                <div class="col-sm-9 form-check">
+                    <input id="hrefLink" name="hrefLink" type="checkbox" class="form-check-input custom-checkbox"
+                        [(ngModel)]="formField.checkBoxOptions.haveLink">
+                    <label for="hrefLink" class="form-check-label">Abilita per inserire un link nella checkbox</label>
+                </div>
+
+            </div>
+            <div class="row mt-3 mb-3">
+                <label class="col-sm-3 col-form-label font-medium">Link</label>
+                <div class="col-sm-9 ">
+                    <input 
+                    id="hrefLink"
+                    name="hrefLink"
+                    type="url"
+                    class="form-control"
+                    [(ngModel)]="formField.checkBoxOptions.hrefLink"
+                    #hrefLink="ngModel" 
+                    [required]="formField.checkBoxOptions.haveLink === true">
+                      
+                </div>
+                <div *ngIf="hrefLink.invalid && hrefLink.touched  && formField.checkBoxOptions.haveLink" class="text-danger">*link obbligatorio</div>     
+            </div>
+
+            <div class="row mt-3 mb-3">
+                <label class="col-sm-3 col-form-label font-medium">Testo del link</label>
+                <div class="col-sm-9 ">
+                    <input 
+                    id="hrefText" 
+                        name="hrefText" 
+                        type="text"
+                        class="form-control"
+                        [required]="formField.checkBoxOptions.haveLink === true"
+                        [(ngModel)]="formField.checkBoxOptions.hrefText"
+                        #hrefText="ngModel">
+                </div>
+                <div *ngIf="hrefText.invalid && hrefText.touched  && formField.checkBoxOptions.haveLink" class="text-danger">*Testo del link</div>
+            </div>
+        </div>
+        <!--Fine CheckBox-->
+        <div *ngIf="showFileBoxOption && formField.fileBoxOptions" class="row mt-3 mb-3 ">
+            <div class="row mt-3 mb-3">
+                <label class="col-sm-3 col-form-label font-medium">Larghezza massima immagine</label>
+                <div class="col-sm-9">
+                    <input id="maxWidth" name="maxWidth" type="number" class="form-control" #maxWidth="ngModel" required [(ngModel)]="formField.fileBoxOptions.maxWidth">
+                   
+                </div>
+                <div *ngIf="maxWidth.invalid && maxWidth.touched" class="text-danger">maxWidth obbligatorio</div>    
+            </div>
+            <div class="row mt-3 mb-3">
+                <label class="col-sm-3 col-form-label font-medium">Altezza massima</label>
+                <div class="col-sm-9 ">
+                    <input
+                       id="maxheight"
+                       name="maxheight"
+                       type="number" 
+                       class="form-control" 
+                      
+                       
+                       [(ngModel)]="formField.fileBoxOptions.maxheight">
+                     
+                </div>
+                    
+            </div>
+
+            <div class="row mt-3 mb-3">
+                <label class="col-sm-3 col-form-label font-medium">Salva foto base64</label>
+                <div class="col-sm-9 form-check">
+                    <input id="multiple" name="multiple" type="checkbox" class="form-check-input custom-checkbox"
+                        [(ngModel)]="formField.fileBoxOptions.isbase64">
+                    <label for="multiple" class="form-check-label">Spunta per salvare il base64, se non lo fai lo devi gestire a mano!</label>
+                </div>
+
+            </div>
+
+            <div class="row mt-3 mb-3">
+                <label class="col-sm-3 col-form-label font-medium">Max size in MB</label>
+                <div class="col-sm-9 ">
+                    <input
+                       id="maxSize"
+                       name="maxSize"
+                       type="number" 
+                       class="form-control" 
+                      
+                       
+                       [(ngModel)]="formField.fileBoxOptions.maxSize">
+                     
+                </div>
+                    
+            </div>
+        </div>
+
+        <div *ngIf="showSelectOption && formField.selectOptions" class="row mt-3 mb-3 ">
+            <div class="row mt-3 mb-3">
+                <label class="col-sm-3 col-form-label font-medium">Multiple</label>
+                <div class="col-sm-9 form-check">
+                    <input id="multiple" name="multiple" type="checkbox" class="form-check-input custom-checkbox"
+                        [(ngModel)]="formField.selectOptions.multiple">
+                    <label for="multiple" class="form-check-label">Select tipo multicheck</label>
+                </div>
+
+            </div>
+
+            <div class="row mt-3 mb-3">
+                <label class="col-sm-3 col-form-label font-medium">Parent ID</label>
+                <div class="col-sm-9">
+                    <input type="text" name="parent" class="form-control" [(ngModel)]="formField.selectOptions.parent">
+                </div>
+
+            </div>
+            <div class="row mt-3 mb-3">
+                <label class="col-sm-3 col-form-label font-medium">Display Expression
+                    <span class="badge bg-secondary">Richiesto</span>
+                </label>
+                <div class="col-sm-9">
+                    <input type="text" required #displayExp="ngModel" class="form-control" name="displayExp"
+                        [(ngModel)]="formField.selectOptions.displayExp">
+                </div>
+
+                <div *ngIf="displayExp.invalid && displayExp.touched" class="text-danger">displayExp obbligatorio</div>
+            </div>
+            <div class="row mt-3 mb-3">
+                <label class="col-sm-3 col-form-label font-medium">Value Expression
+                    <span class="badge bg-secondary">Richiesto</span>
+                </label>
+                <div class="col-sm-9">
+                    <input type="text" required #valueExp="ngModel" class="form-control" name="valueExp"
+                        [(ngModel)]="formField.selectOptions.valueExp">
+                </div>
+
+                <div *ngIf="valueExp.invalid && valueExp.touched" class="text-danger">valueExp obbligatorio</div>
+            </div>
+<!--
+
+            api:selectOptions.api            
+-->
+            <div class="mt-3 mb-3">
+                <div class="row mt-3 mb-3">
+                    <label class="col-sm-3 col-form-label font-medium">Remote dataSource</label>
+                    <div class="col-sm-9 form-check">
+                        <input id="remoted" name="remoted" type="checkbox" class="form-check-input custom-checkbox"
+                            [(ngModel)]="formField.selectOptions.remote">
+                        <label for="remoted" class="form-check-label">Remote dataSource</label>
+                    </div>
+    
+                </div>
+                
+            </div>
+
+            <div class="row mt-3 mb-3" >
+                <label class="col-sm-3 col-form-label font-medium">Api
+                    <span class="badge bg-secondary">Richiesto</span>
+                </label>
+                <div class="col-sm-9">
+                    <input type="text" required #api="ngModel" class="form-control" name="api"
+                        [(ngModel)]="formField.selectOptions.api"
+                        [disabled]="!formField.selectOptions.remote === true"
+                        >
+                </div>
+
+                <div *ngIf="api.invalid && api.touched" class="text-danger">Api se remote obbligatorio</div>
+            </div>
+
+            <div class="mt-3 mb-3" >
+
+                <table class="table table-sm "
+                    *ngIf="!formField.selectOptions?.remote && formField.selectOptions?.valueExp && formField.selectOptions?.displayExp">
+                    <thead>
+                        <tr>
+                            <td>{{formField.selectOptions.valueExp}}</td>
+                            <td>{{formField.selectOptions.displayExp}}</td>
+                            <td>Parent</td>
+                            <td>Azioni</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" class="form-control" [name]="formField.selectOptions!.valueExp"
+                                    [(ngModel)]="newOption[formField.selectOptions!.valueExp]"
+                                    placeholder="Nuovo Display">
+                            </td>
+                            <td><input type="text" class="form-control" [name]="formField.selectOptions!.displayExp"
+                                    [(ngModel)]="newOption[formField.selectOptions!.displayExp]"
+                                    placeholder="Nuovo Value">
+                            </td>
+                            <td><input type="text" class="form-control" name="parentT" [(ngModel)]="newOption.parent"
+                                    placeholder="Nuovo Parent"></td>
+                            <td class="action-cell"><button (click)="addOption()"
+                                    class="icon-button btn button-in-cell"><span
+                                        class="mdi mdi-content-save-outline"></span></button></td>
+                        </tr>
+                        <tr *ngFor="let option of formField.selectOptions!.options; let i = index"
+                            (click)="onOptionClick(option)">
+                            <td>
+
+                                {{option[formField.selectOptions!.valueExp]}}
+
+                            </td>
+                            <td>
+                                {{option[formField.selectOptions!.displayExp]}}
+
+                            </td>
+                            <td>
+                                {{option.parent}}
+                            </td>
+                            <td>
+                                <button (click)="removeOption(i)">Rimuovi</button>
+                            </td>
+                        </tr>
+                        <!-- Riga per aggiungere una nuova opzione -->
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </form>
+</div>
+<div class="modal-footer">
+
+    <button type="button" class="btn ana-button" (click)="closeProperties(elementForm)"><span
+            class="mdi mdi-keyboard-return"></span>Chiudi</button>
+    <button type="button" class="btn ana-button" (click)="saveProperties(elementForm)"><span
+            class="mdi mdi-content-save-outline"></span>Salva</button>
+
+</div>

@@ -1,0 +1,30 @@
+
+<main class="mi-container " [ngClass]="{'menu-open': isMenuOpen}">
+    <ng-container >
+        <app-header  [toggleMenu]="toggleMenu"></app-header>
+    
+        <div class="verticalMenucontainer sidebar" [ngClass]="{'open': isMenuOpen}">
+            <app-menu [toggleMenu]="toggleMenu()"></app-menu>
+        </div>
+        
+
+        
+    </ng-container>
+    
+
+    <div class="container no-padding ana-container" >
+        
+       
+        
+        <router-outlet></router-outlet>
+            
+        <app-modal-popup-wrapper></app-modal-popup-wrapper>
+    </div>
+    <!-- <app-popup-wrapper></app-popup-wrapper> -->
+
+
+
+
+     <!-- <app-footer ></app-footer>-->
+
+</main>

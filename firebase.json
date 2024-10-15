@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "site":"admincomemivesto",
+    "public": "dist/browser",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/dashboard/**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
