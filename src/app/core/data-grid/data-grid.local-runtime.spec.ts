@@ -1,5 +1,7 @@
+import { By } from '@angular/platform-browser';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DataGridComponent } from './data-grid.component';
+import { CustomScrollbarComponent } from '../ui/custom-scrollbar/custom-scrollbar.component';
 
 describe('DataGridComponent local runtime behavior', () => {
   let component: DataGridComponent;
@@ -29,6 +31,20 @@ describe('DataGridComponent local runtime behavior', () => {
     ];
     fixture.componentRef.setInput('dataSource', source);
     fixture.detectChanges();
+  });
+
+  it('forwards the custom scrollbar output to the DataGrid scroll handler', () => {
+    const onScroll = spyOn(component, 'onScroll').and.resolveTo();
+
+    fixture.detectChanges();
+
+    const scrollbar = fixture.debugElement.query(By.directive(CustomScrollbarComponent))
+      .componentInstance as CustomScrollbarComponent;
+    const event = new Event('scroll');
+
+    scrollbar.scrolled.emit(event);
+
+    expect(onScroll).toHaveBeenCalledOnceWith(event);
   });
 
   it('keeps a local filter applied after Angular change detection', async () => {
