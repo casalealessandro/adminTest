@@ -1,20 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
-
-import { AnagraficaService } from '../../services/anagrafica.service';
 import { DataGridComponent } from './data-grid.component';
 
 describe('DataGridComponent local runtime behavior', () => {
   let component: DataGridComponent;
   let fixture: ComponentFixture<DataGridComponent>;
-
-  const anagraficaServiceStub = {
-    getElenco: jasmine.createSpy('getElenco').and.returnValue(of([])),
-    getValue: jasmine.createSpy('getValue').and.resolveTo(null),
-    actionInsert: jasmine.createSpy('actionInsert').and.resolveTo(null),
-    actionPut: jasmine.createSpy('actionPut').and.resolveTo(null),
-    actionDelete: jasmine.createSpy('actionDelete').and.resolveTo(null),
-  };
 
   const source = [
     { id: 1, name: 'Giacca Blu', categoryId: 10 },
@@ -25,9 +14,6 @@ describe('DataGridComponent local runtime behavior', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [DataGridComponent],
-      providers: [
-        { provide: AnagraficaService, useValue: anagraficaServiceStub },
-      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(DataGridComponent);
