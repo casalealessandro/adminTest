@@ -1,9 +1,30 @@
-<main class="bootstrap-shell">
-  <section class="bootstrap-card">
-    <div class="bootstrap-kicker">Angular Admin Starter Kit</div>
-    <h1>AdminForge</h1>
-    <p>
-      Neutral repository bootstrap complete. The reusable Core will be imported in SK.5.2.
-    </p>
-  </section>
-</main>
+<div class="adminforge-shell">
+  <aside class="adminforge-sidebar">
+    <div class="adminforge-brand">
+      <span class="adminforge-brand__mark">AF</span>
+      <div>
+        <strong>AdminForge</strong>
+        <small>Starter kit demo</small>
+      </div>
+    </div>
+
+    <nav class="adminforge-nav" aria-label="Main navigation">
+      <a routerLink="/users" routerLinkActive="active">Users</a>
+      <a routerLink="/products" routerLinkActive="active">Products</a>
+      <a routerLink="/forms" routerLinkActive="active">Forms</a>
+    </nav>
+
+    <div class="adminforge-sidebar__meta">
+      <span>Angular Core</span>
+      <span>Express API</span>
+      <span>PostgreSQL</span>
+    </div>
+  </aside>
+
+  <main class="adminforge-main">
+    <router-outlet></router-outlet>
+  </main>
+</div>
+
+<app-modal-popup-wrapper></app-modal-popup-wrapper>
+<app-overlay></app-overlay>

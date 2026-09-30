@@ -22,5 +22,7 @@ jobs:
         run: npm run test:core-boundaries
       - name: DataGrid Core tests
         run: npm run test:data-grid
+      - name: Demo API provider tests
+        run: npm run test:demo-api
       - name: Build development
         run: npm run build -- --configuration development

@@ -1,0 +1,20 @@
+<section class="demo-page">
+  <div class="demo-page__header">
+    <div>
+      <span class="demo-page__eyebrow">REST provider demo</span>
+      <h1>Products</h1>
+      <p>Remote products loaded through the same provider-neutral DataGrid contract.</p>
+    </div>
+    <span class="demo-page__badge">/api/products</span>
+  </div>
+
+  <app-data-grid
+    [idTable]="'adminforge-products'"
+    [colonne]="columns"
+    [dataProvider]="provider"
+    [remoteOperation]="true"
+    [showToolbarTop]="true"
+    [showFilter]="false"
+    [tableHeight]="540">
+  </app-data-grid>
+</section>

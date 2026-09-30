@@ -3,36 +3,105 @@
   min-height: 100vh;
 }
 
-.bootstrap-shell {
+.adminforge-shell {
   min-height: 100vh;
   display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  background: var(--bs-tertiary-bg);
+}
+
+.adminforge-sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.25rem;
+  border-right: 1px solid var(--bs-border-color);
+  background: var(--bs-body-bg);
+}
+
+.adminforge-brand {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+
+.adminforge-brand__mark {
+  display: grid;
   place-items: center;
-  padding: 24px;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--bs-dark);
+  color: var(--bs-light);
+  font-weight: 800;
 }
 
-.bootstrap-card {
-  width: min(100%, 720px);
-  padding: 32px;
-  border: 1px solid #e2e8f0;
-  border-radius: 16px;
-  background: #fff;
-  box-shadow: 0 12px 40px rgb(15 23 42 / 8%);
+.adminforge-brand strong,
+.adminforge-brand small {
+  display: block;
 }
 
-.bootstrap-kicker {
-  margin-bottom: 8px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #64748b;
+.adminforge-brand small,
+.adminforge-sidebar__meta {
+  color: var(--bs-secondary-color);
 }
 
-h1 {
-  margin: 0 0 12px;
-  color: #0f172a;
+.adminforge-nav {
+  display: grid;
+  gap: .35rem;
 }
 
-p {
-  margin: 0;
+.adminforge-nav a {
+  padding: .7rem .85rem;
+  border-radius: .6rem;
+  color: var(--bs-body-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.adminforge-nav a:hover,
+.adminforge-nav a.active {
+  background: var(--bs-secondary-bg);
+}
+
+.adminforge-sidebar__meta {
+  margin-top: auto;
+  display: grid;
+  gap: .2rem;
+  font-size: .75rem;
+}
+
+.adminforge-main {
+  min-width: 0;
+  padding: clamp(1rem, 3vw, 2rem);
+}
+
+@media (max-width: 760px) {
+  .adminforge-shell {
+    display: block;
+  }
+
+  .adminforge-sidebar {
+    position: static;
+    height: auto;
+    gap: 1rem;
+    border-right: 0;
+    border-bottom: 1px solid var(--bs-border-color);
+  }
+
+  .adminforge-nav {
+    display: flex;
+    overflow-x: auto;
+  }
+
+  .adminforge-nav a {
+    white-space: nowrap;
+  }
+
+  .adminforge-sidebar__meta {
+    display: none;
+  }
 }

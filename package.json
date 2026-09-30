@@ -8,7 +8,8 @@
     "build": "ng build",
     "test": "ng test",
     "test:core-boundaries": "node scripts/check-core-boundaries.mjs",
-    "test:data-grid": "ng test --watch=false --browsers=ChromeHeadless --include='src/app/core/data-grid/**/*.spec.ts'"
+    "test:data-grid": "ng test --watch=false --browsers=ChromeHeadless --include='src/app/core/data-grid/**/*.spec.ts'",
+    "test:demo-api": "ng test --watch=false --browsers=ChromeHeadless --include='src/app/demo/**/*.spec.ts'"
   },
   "dependencies": {
     "@angular/animations": "^17.3.12",
