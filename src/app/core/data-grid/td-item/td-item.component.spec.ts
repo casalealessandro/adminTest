@@ -1,8 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
 
 import { TdItemComponent } from './td-item.component';
-import { AnagraficaService } from '../../../services/anagrafica.service';
 
 describe('TdItemComponent campoLista rendering', () => {
   let component: TdItemComponent;
@@ -20,13 +18,6 @@ describe('TdItemComponent campoLista rendering', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [TdItemComponent],
-      providers: [{
-        provide: AnagraficaService,
-        useValue: {
-          getElenco: jasmine.createSpy('getElenco').and.returnValue(of([])),
-          getValue: jasmine.createSpy('getValue').and.resolveTo(null),
-        },
-      }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TdItemComponent);
